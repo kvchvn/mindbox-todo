@@ -1,11 +1,14 @@
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { IconButton, Select } from "@radix-ui/themes";
 import { useEffect } from "react";
-import { COLORS, LS_KEY } from "../constants";
-import { useDispatchContext, useStateContext } from "../context";
-import { ActionType, Colors } from "../types";
+import { useTranslation } from "react-i18next";
+import { COLORS, LANGUAGES, LS_KEY } from "../lib/constants";
+import { useDispatchContext, useStateContext } from "../lib/context";
+import { ActionType, Colors, Languages } from "../lib/types";
 
 export const Settings = () => {
+  const { i18n } = useTranslation();
+
   const dispatch = useDispatchContext();
   const state = useStateContext();
 
@@ -17,6 +20,12 @@ export const Settings = () => {
 
   const handleChangeColor = (color: Colors) => {
     dispatch({ type: ActionType.CHANGE_COLOR, payload: color });
+    localStorage.setItem(LS_KEY.color, color);
+  };
+
+  const handleChangeLanguage = (lang: Languages) => {
+    i18n.changeLanguage(i18n.language === "en" ? "ru" : "en");
+    localStorage.setItem(LS_KEY.lang, lang);
   };
 
   useEffect(() => {
@@ -26,12 +35,22 @@ export const Settings = () => {
 
   return (
     <section className="absolute bottom-4 right-4 flex items-center gap-2">
-      <Select.Root defaultValue={state.color as string} onValueChange={handleChangeColor}>
+      <Select.Root defaultValue={i18n.language} onValueChange={handleChangeLanguage}>
         <Select.Trigger />
         <Select.Content>
-          {COLORS.map((color) => (
-            <Select.Item key={color} value={color} className="first-letter:uppercase">
-              {color}
+          {Object.entries(LANGUAGES).map(([langKey, langName]) => (
+            <Select.Item key={langKey} value={langKey}>
+              {langName}
+            </Select.Item>
+          ))}
+        </Select.Content>
+      </Select.Root>
+      <Select.Root defaultValue={state.color} onValueChange={handleChangeColor}>
+        <Select.Trigger />
+        <Select.Content>
+          {Object.entries(COLORS).map(([colorKey, { en, ru }]) => (
+            <Select.Item key={colorKey} value={colorKey}>
+              {i18n.language === "en" ? en : ru}
             </Select.Item>
           ))}
         </Select.Content>

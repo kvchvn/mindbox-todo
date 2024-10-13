@@ -25,6 +25,8 @@ export type Colors = (typeof themePropDefs)["accentColor"]["values"] extends rea
   ? Key
   : never;
 
+export type Languages = "en" | "ru";
+
 export type Tab = "all" | "completed" | "uncompleted";
 
 export type TodoAction =

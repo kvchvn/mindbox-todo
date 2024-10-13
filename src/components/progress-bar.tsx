@@ -1,5 +1,5 @@
 import { Progress } from "@radix-ui/themes";
-import { useStateContext } from "../context";
+import { useStateContext } from "../lib/context";
 
 export const ProgressBar = () => {
   const state = useStateContext();

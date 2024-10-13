@@ -1,9 +1,12 @@
 import { AlertDialog, Button, Flex } from "@radix-ui/themes";
-import { TEST_ID } from "../constants";
-import { useDispatchContext, useStateContext } from "../context";
-import { ActionType } from "../types";
+import { useTranslation } from "react-i18next";
+import { TEST_ID } from "../lib/constants";
+import { useDispatchContext, useStateContext } from "../lib/context";
+import { ActionType } from "../lib/types";
 
 export const ClearTodosAlert = () => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatchContext();
   const state = useStateContext();
 
@@ -21,9 +24,9 @@ export const ClearTodosAlert = () => {
   return (
     <AlertDialog.Root open={Boolean(state.prepareToClearTodos)}>
       <AlertDialog.Content maxWidth="360px" data-testid={TEST_ID.alertRemoveAllTodos}>
-        <AlertDialog.Title>Warning!</AlertDialog.Title>
+        <AlertDialog.Title>{t("warning")}!</AlertDialog.Title>
         <AlertDialog.Description>
-          Are you sure you want to clear {state.tab} todos?
+          {t("remove todos?")} {t(state.tab)} {t("todos")}?
         </AlertDialog.Description>
         <Flex gap="3" justify="end" className="mt-8">
           <AlertDialog.Cancel>
@@ -33,7 +36,7 @@ export const ClearTodosAlert = () => {
               onClick={resetPreparedToClearTodos}
               data-testid={TEST_ID.alertRemoveAllTodosCancel}
             >
-              Cancel
+              {t("cancel")}
             </Button>
           </AlertDialog.Cancel>
           <AlertDialog.Action>
@@ -43,7 +46,7 @@ export const ClearTodosAlert = () => {
               onClick={handleClearTodos}
               data-testid={TEST_ID.alertRemoveAllTodosAccept}
             >
-              Clear
+              {t("remove")}
             </Button>
           </AlertDialog.Action>
         </Flex>

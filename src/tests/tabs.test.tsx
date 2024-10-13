@@ -3,7 +3,7 @@ import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, test } from "vitest";
 import App from "../App";
-import { TEST_ID } from "../constants";
+import { TEST_ID } from "../lib/constants";
 import { createTodo } from "./utils/helpers";
 
 describe("tabs", () => {

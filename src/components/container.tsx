@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { LS_KEY } from "../constants";
-import { useStateContext } from "../context";
+import { LS_KEY } from "../lib/constants";
+import { useStateContext } from "../lib/context";
 
 export const Container = ({ children }: React.PropsWithChildren) => {
   const state = useStateContext();

@@ -1,10 +1,13 @@
 import { TrashIcon } from "@radix-ui/react-icons";
 import { Button } from "@radix-ui/themes";
-import { TEST_ID } from "../constants";
-import { useDispatchContext, useStateContext } from "../context";
-import { ActionType } from "../types";
+import { useTranslation } from "react-i18next";
+import { TEST_ID } from "../lib/constants";
+import { useDispatchContext, useStateContext } from "../lib/context";
+import { ActionType } from "../lib/types";
 
 export const ResetButton = () => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatchContext();
   const state = useStateContext();
 
@@ -28,7 +31,7 @@ export const ResetButton = () => {
       data-testid={TEST_ID.buttonRemoveAllTodos}
     >
       <TrashIcon width={12} height={12} />
-      Remove {state.tab} todos
+      {t("remove")} {t(state.tab)} {t("todos")}
     </Button>
   );
 };

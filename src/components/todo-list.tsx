@@ -1,15 +1,18 @@
 import { TrashIcon } from "@radix-ui/react-icons";
 import { Badge, Checkbox, IconButton } from "@radix-ui/themes";
 import clsx from "clsx";
-import { TEST_ID } from "../constants";
-import { useDispatchContext, useStateContext } from "../context";
-import { ActionType, State, Todo } from "../types";
+import { useTranslation } from "react-i18next";
+import { TEST_ID } from "../lib/constants";
+import { useDispatchContext, useStateContext } from "../lib/context";
+import { ActionType, State, Todo } from "../lib/types";
 
 type Props = {
   type: Extract<keyof State, "completedTodos" | "uncompletedTodos">;
 };
 
 export const TodoList = ({ type }: Props) => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatchContext();
   const state = useStateContext();
 
@@ -37,7 +40,7 @@ export const TodoList = ({ type }: Props) => {
         data-testid={TEST_ID.noTodos}
         className="self-center text-slate-400 dark:text-slate-400 text-sm"
       >
-        No todos
+        {t("no todos")}
       </li>
     );
   }
@@ -48,7 +51,7 @@ export const TodoList = ({ type }: Props) => {
         data-testid={TEST_ID.noTodos}
         className="self-center text-slate-400 dark:text-slate-400 text-sm"
       >
-        No todos
+        {t("no todos")}
       </li>
     );
   }
@@ -73,7 +76,7 @@ export const TodoList = ({ type }: Props) => {
             variant={isCompleted ? "outline" : "soft"}
             data-testid={TEST_ID.todoItemPriorityBadge}
           >
-            Priority
+            {t("priority")}
           </Badge>
         )}
         <span className={clsx(isCompleted && "line-through opacity-60")}>{todo.value}</span>

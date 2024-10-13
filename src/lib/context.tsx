@@ -22,7 +22,7 @@ export const initialState: State = {
     (!FROM_LS.theme && window.matchMedia("(prefers-color-scheme: dark)").matches)
       ? "dark"
       : "light",
-  color: (FROM_LS.color as Colors | null) ?? COLORS[0],
+  color: (FROM_LS.color as Colors | null) ?? (Object.keys(COLORS)[0] as Colors),
 };
 
 const DispatchContext = React.createContext<React.Dispatch<TodoAction>>((_: TodoAction) => {});

@@ -1,9 +1,12 @@
 import { AlertDialog, Button, Flex } from "@radix-ui/themes";
-import { TEST_ID } from "../constants";
-import { useDispatchContext, useStateContext } from "../context";
-import { ActionType } from "../types";
+import { useTranslation } from "react-i18next";
+import { TEST_ID } from "../lib/constants";
+import { useDispatchContext, useStateContext } from "../lib/context";
+import { ActionType } from "../lib/types";
 
 export const RemoveTodoAlert = () => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatchContext();
   const state = useStateContext();
 
@@ -21,10 +24,10 @@ export const RemoveTodoAlert = () => {
   return (
     <AlertDialog.Root open={Boolean(state.prepareToRemoveTodo)}>
       <AlertDialog.Content maxWidth="360px" data-testid={TEST_ID.alertRemoveTodo}>
-        <AlertDialog.Title as="h3">Warning!</AlertDialog.Title>
+        <AlertDialog.Title as="h3">{t("warning")}!</AlertDialog.Title>
         <AlertDialog.Description size="2">
-          Are you sure you want to remove the todo?
-          <span className="italic">{state.prepareToRemoveTodo?.value}</span>
+          {t("remove todo?")}
+          <span className="italic block">{state.prepareToRemoveTodo?.value}</span>
         </AlertDialog.Description>
 
         <Flex gap="3" justify="end" className="mt-8">
@@ -35,7 +38,7 @@ export const RemoveTodoAlert = () => {
               onClick={resetPreparedToRemoveTodo}
               data-testid={TEST_ID.alertRemoveTodoCancel}
             >
-              Cancel
+              {t("cancel")}
             </Button>
           </AlertDialog.Cancel>
           <AlertDialog.Action>
@@ -45,7 +48,7 @@ export const RemoveTodoAlert = () => {
               onClick={handleRemoveTodo}
               data-testid={TEST_ID.alertRemoveTodoAccept}
             >
-              Remove
+              {t("remove")}
             </Button>
           </AlertDialog.Action>
         </Flex>

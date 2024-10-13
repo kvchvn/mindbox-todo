@@ -1,4 +1,4 @@
-import { Colors } from "./types";
+import { Colors, Languages } from "./types";
 
 export const TEST_ID = {
   inputWriteNewTodo: "input-write-new-todo",
@@ -28,6 +28,16 @@ export const LS_KEY = {
   uncompletedTodos: "uncompletedTodos",
   theme: "theme",
   color: "color",
+  lang: "lang",
 } as const;
 
-export const COLORS: Array<Colors> = ["jade", "bronze", "indigo"];
+export const COLORS: Partial<Record<Colors, { en: string; ru: string }>> = {
+  jade: { en: "jade", ru: "нефрит" },
+  bronze: { en: "bronze", ru: "бронза" },
+  indigo: { en: "indigo", ru: "индиго" },
+};
+
+export const LANGUAGES: Record<Languages, string> = {
+  en: "English",
+  ru: "Русский",
+};

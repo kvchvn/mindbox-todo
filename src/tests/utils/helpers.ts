@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 import { expect } from "vitest";
-import { TEST_ID } from "../../constants";
+import { TEST_ID } from "../../lib/constants";
 
 export const createTodo = async (text: string = "blablabla", priority: boolean = false) => {
   const input = screen.getByTestId<HTMLInputElement>(TEST_ID.inputWriteNewTodo);

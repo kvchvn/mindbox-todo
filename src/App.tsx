@@ -10,8 +10,8 @@ import { Settings } from "./components/settings";
 import { Tabs } from "./components/tabs";
 import { ThemeProvider } from "./components/theme-provider";
 import { TodoList } from "./components/todo-list";
-import { TEST_ID } from "./constants";
-import { ContextProvider } from "./context";
+import { TEST_ID } from "./lib/constants";
+import { ContextProvider } from "./lib/context";
 
 function App() {
   return (

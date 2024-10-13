@@ -1,6 +1,6 @@
 import { Theme } from "@radix-ui/themes";
 import React from "react";
-import { useStateContext } from "../context";
+import { useStateContext } from "../lib/context";
 
 export const ThemeProvider = ({ children }: React.PropsWithChildren) => {
   const state = useStateContext();

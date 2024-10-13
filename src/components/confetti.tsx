@@ -1,5 +1,5 @@
 import ReactConfetti from "react-confetti";
-import { useStateContext } from "../context";
+import { useStateContext } from "../lib/context";
 
 export const Confetti = () => {
   const state = useStateContext();

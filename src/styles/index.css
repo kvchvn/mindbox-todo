@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: "PermanentMarker";
-  src: local("PermanentMarker-Regular"), url("./assets/fonts/PermanentMarker-Regular.ttf");
+  src: local("PermanentMarker-Regular"), url("../assets/fonts/PermanentMarker-Regular.ttf");
 }
 
 .radix-themes {
