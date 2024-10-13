@@ -3,7 +3,7 @@ import { IconButton, Select } from "@radix-ui/themes";
 import { useEffect } from "react";
 import { COLORS, LS_KEY } from "../constants";
 import { useDispatchContext, useStateContext } from "../context";
-import { ActionType, Color } from "../types";
+import { ActionType, Colors } from "../types";
 
 export const Settings = () => {
   const dispatch = useDispatchContext();
@@ -15,7 +15,7 @@ export const Settings = () => {
     dispatch({ type: ActionType.CHANGE_THEME, payload: isDark ? "light" : "dark" });
   };
 
-  const handleChangeColor = (color: Color) => {
+  const handleChangeColor = (color: Colors) => {
     dispatch({ type: ActionType.CHANGE_COLOR, payload: color });
   };
 
@@ -26,7 +26,7 @@ export const Settings = () => {
 
   return (
     <section className="absolute bottom-4 right-4 flex items-center gap-2">
-      <Select.Root defaultValue={state.color} onValueChange={handleChangeColor}>
+      <Select.Root defaultValue={state.color as string} onValueChange={handleChangeColor}>
         <Select.Trigger />
         <Select.Content>
           {COLORS.map((color) => (

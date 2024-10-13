@@ -1,3 +1,5 @@
+import { Colors } from "./types";
+
 export const TEST_ID = {
   inputWriteNewTodo: "input-write-new-todo",
   buttonCreateNewTodo: "button-create-new-todo",
@@ -28,4 +30,4 @@ export const LS_KEY = {
   color: "color",
 } as const;
 
-export const COLORS = ["jade", "bronze", "indigo"];
+export const COLORS: Array<Colors> = ["jade", "bronze", "indigo"];

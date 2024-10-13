@@ -1,4 +1,4 @@
-import { COLORS } from "./constants";
+import { themePropDefs } from "@radix-ui/themes/props";
 
 export enum ActionType {
   ADD_TODO = "ADD_TODO",
@@ -21,7 +21,9 @@ export type Todo = {
 
 export type Theme = "dark" | "light";
 
-export type Color = typeof COLORS extends (infer Key)[] ? Key : never;
+export type Colors = (typeof themePropDefs)["accentColor"]["values"] extends readonly (infer Key)[]
+  ? Key
+  : never;
 
 export type Tab = "all" | "completed" | "uncompleted";
 
@@ -52,7 +54,7 @@ export type TodoAction =
     }
   | {
       type: ActionType.CHANGE_COLOR;
-      payload: Color;
+      payload: Colors;
     }
   | {
       type: ActionType.PREPARE_TO_CLEAR_TODOS;
@@ -71,5 +73,5 @@ export type State = {
   prepareToRemoveTodo: Todo | null;
   prepareToClearTodos: boolean;
   theme: Theme;
-  color: Color;
+  color: Colors;
 };

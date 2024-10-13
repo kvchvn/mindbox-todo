@@ -1,11 +1,10 @@
 import { SegmentedControl } from "@radix-ui/themes";
 import { TEST_ID } from "../constants";
-import { useDispatchContext, useStateContext } from "../context";
+import { useDispatchContext } from "../context";
 import { ActionType, Tab } from "../types";
 
 export const Tabs = () => {
   const dispatch = useDispatchContext();
-  const state = useStateContext();
 
   const handleTabChange = (value: Tab) => {
     dispatch({ type: ActionType.SET_TAB, payload: value });

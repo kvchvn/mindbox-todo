@@ -1,7 +1,7 @@
 import React, { useContext, useReducer } from "react";
 import { COLORS, LS_KEY } from "./constants";
 import { reducer } from "./reducer";
-import { State, TodoAction } from "./types";
+import { Colors, State, TodoAction } from "./types";
 
 const FROM_LS = {
   uncompletedTodos: localStorage.getItem(LS_KEY.uncompletedTodos),
@@ -22,7 +22,7 @@ export const initialState: State = {
     (!FROM_LS.theme && window.matchMedia("(prefers-color-scheme: dark)").matches)
       ? "dark"
       : "light",
-  color: FROM_LS.color ?? COLORS[0],
+  color: (FROM_LS.color as Colors | null) ?? COLORS[0],
 };
 
 const DispatchContext = React.createContext<React.Dispatch<TodoAction>>((_: TodoAction) => {});
