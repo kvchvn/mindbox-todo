@@ -1,6 +1,7 @@
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { IconButton, Select } from "@radix-ui/themes";
 import { useEffect } from "react";
+import { COLORS, LS_KEY } from "../constants";
 import { useDispatchContext, useStateContext } from "../context";
 import { ActionType, Color } from "../types";
 
@@ -20,7 +21,7 @@ export const Settings = () => {
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", state.theme === "dark");
-    localStorage.theme = state.theme;
+    localStorage.setItem(LS_KEY.theme, state.theme);
   }, [state.theme]);
 
   return (
@@ -28,9 +29,11 @@ export const Settings = () => {
       <Select.Root defaultValue={state.color} onValueChange={handleChangeColor}>
         <Select.Trigger />
         <Select.Content>
-          <Select.Item value="jade">Jade</Select.Item>
-          <Select.Item value="bronze">Bronze</Select.Item>
-          <Select.Item value="indigo">Indigo</Select.Item>
+          {COLORS.map((color) => (
+            <Select.Item key={color} value={color} className="first-letter:uppercase">
+              {color}
+            </Select.Item>
+          ))}
         </Select.Content>
       </Select.Root>
       <IconButton variant="surface" onClick={handleToggleTheme}>

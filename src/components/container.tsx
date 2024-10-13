@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
+import { LS_KEY } from "../constants";
 import { useStateContext } from "../context";
 
 export const Container = ({ children }: React.PropsWithChildren) => {
   const state = useStateContext();
 
   useEffect(() => {
-    console.log("effect");
-    localStorage.completedTodos = JSON.stringify(state.completedTodos);
-    localStorage.uncompletedTodos = JSON.stringify(state.uncompletedTodos);
+    localStorage.setItem(LS_KEY.completedTodos, JSON.stringify(state.completedTodos));
+    localStorage.setItem(LS_KEY.uncompletedTodos, JSON.stringify(state.uncompletedTodos));
   }, [state.completedTodos.length, state.uncompletedTodos.length]);
 
   return (

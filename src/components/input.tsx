@@ -2,6 +2,7 @@ import { PlusIcon } from "@radix-ui/react-icons";
 import { Badge, Checkbox, IconButton, Kbd, TextField } from "@radix-ui/themes";
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { TEST_ID } from "../constants";
 import { useDispatchContext, useStateContext } from "../context";
 import { ActionType, Todo } from "../types";
 
@@ -51,6 +52,7 @@ export const Input = () => {
         value={state.inputValue}
         maxLength={40}
         className="w-full"
+        data-testid={TEST_ID.inputWriteNewTodo}
       >
         <TextField.Slot side="right">
           <Kbd onClick={handleCreateTodo} className="hidden sm:block">
@@ -61,6 +63,7 @@ export const Input = () => {
             onClick={handleCreateTodo}
             disabled={!state.inputValue}
             className="sm:hidden"
+            data-testid={TEST_ID.buttonCreateNewTodo}
           >
             <PlusIcon width={16} height={16} />
           </IconButton>
@@ -72,7 +75,8 @@ export const Input = () => {
           color="ruby"
           variant="classic"
           checked={priority}
-          onClick={() => setPriority(!priority)}
+          onCheckedChange={() => setPriority(!priority)}
+          data-testid={TEST_ID.priorityToggle}
         />
         <span className="text-sm flex gap-1 items-center">
           add

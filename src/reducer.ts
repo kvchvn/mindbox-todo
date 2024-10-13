@@ -3,8 +3,6 @@ import { ActionType, State, Todo, TodoAction } from "./types";
 export const reducer = (state: State, action: TodoAction): State => {
   const { type, payload } = action;
 
-  console.log({ action });
-
   switch (type) {
     case ActionType.ADD_TODO:
       return {

@@ -1,20 +1,28 @@
 import React, { useContext, useReducer } from "react";
+import { COLORS, LS_KEY } from "./constants";
 import { reducer } from "./reducer";
 import { State, TodoAction } from "./types";
 
+const FROM_LS = {
+  uncompletedTodos: localStorage.getItem(LS_KEY.uncompletedTodos),
+  completedTodos: localStorage.getItem(LS_KEY.completedTodos),
+  theme: localStorage.getItem(LS_KEY.theme),
+  color: localStorage.getItem(LS_KEY.color),
+};
+
 export const initialState: State = {
-  uncompletedTodos: localStorage.uncompletedTodos ? JSON.parse(localStorage.uncompletedTodos) : [],
-  completedTodos: localStorage.completedTodos ? JSON.parse(localStorage.completedTodos) : [],
+  uncompletedTodos: FROM_LS.uncompletedTodos ? JSON.parse(FROM_LS.uncompletedTodos) : [],
+  completedTodos: FROM_LS.completedTodos ? JSON.parse(FROM_LS.completedTodos) : [],
   inputValue: "",
   tab: "all",
   prepareToRemoveTodo: null,
   prepareToClearTodos: false,
   theme:
-    localStorage.theme === "dark" ||
-    (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
+    FROM_LS.theme === "dark" ||
+    (!FROM_LS.theme && window.matchMedia("(prefers-color-scheme: dark)").matches)
       ? "dark"
       : "light",
-  color: localStorage.color ?? "jade",
+  color: FROM_LS.color ?? COLORS[0],
 };
 
 const DispatchContext = React.createContext<React.Dispatch<TodoAction>>((_: TodoAction) => {});

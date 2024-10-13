@@ -10,6 +10,7 @@ import { Settings } from "./components/settings";
 import { Tabs } from "./components/tabs";
 import { ThemeProvider } from "./components/theme-provider";
 import { TodoList } from "./components/todo-list";
+import { TEST_ID } from "./constants";
 import { ContextProvider } from "./context";
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
             <Input />
             <ProgressBar />
             <ScrollArea scrollbars="vertical" type="auto" className="h-64">
-              <ul className="flex flex-col self-stretch">
+              <ul className="flex flex-col self-stretch" data-testid={TEST_ID.todoList}>
                 <TodoList type="uncompletedTodos" />
                 <TodoList type="completedTodos" />
               </ul>

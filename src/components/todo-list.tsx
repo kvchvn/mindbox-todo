@@ -1,6 +1,7 @@
 import { TrashIcon } from "@radix-ui/react-icons";
 import { Badge, Checkbox, IconButton } from "@radix-ui/themes";
 import clsx from "clsx";
+import { TEST_ID } from "../constants";
 import { useDispatchContext, useStateContext } from "../context";
 import { ActionType, State, Todo } from "../types";
 
@@ -31,17 +32,32 @@ export const TodoList = ({ type }: Props) => {
   }
 
   if (state.tab !== "all" && !state[type].length) {
-    return <li className="self-center text-slate-400 dark:text-slate-400 text-sm">No todos</li>;
+    return (
+      <li
+        data-testid={TEST_ID.noTodos}
+        className="self-center text-slate-400 dark:text-slate-400 text-sm"
+      >
+        No todos
+      </li>
+    );
   }
 
   if (!isCompleted && !state.completedTodos.length && !state.uncompletedTodos.length) {
-    return <li className="self-center text-slate-400 dark:text-slate-400 text-sm">No todos</li>;
+    return (
+      <li
+        data-testid={TEST_ID.noTodos}
+        className="self-center text-slate-400 dark:text-slate-400 text-sm"
+      >
+        No todos
+      </li>
+    );
   }
 
   return state[type].map((todo) => (
     <li
       key={todo.id}
       className="flex justify-between items-center px-2 py-2 hover:bg-slate-200 dark:hover:bg-slate-500 rounded-lg group"
+      data-testid={isCompleted ? TEST_ID.todoItemCompleted : TEST_ID.todoItemUncompleted}
     >
       <label className="flex items-center gap-2 cursor-pointer w-full">
         <Checkbox
@@ -49,11 +65,13 @@ export const TodoList = ({ type }: Props) => {
           size="3"
           variant="classic"
           onClick={() => handleChangeTodoStatus({ todo, completed: isCompleted })}
+          data-testid={TEST_ID.checkboxCompleteTodo}
         />
         {todo.priority && (
           <Badge
             color={isCompleted ? undefined : "ruby"}
             variant={isCompleted ? "outline" : "soft"}
+            data-testid={TEST_ID.todoItemPriorityBadge}
           >
             Priority
           </Badge>
@@ -65,6 +83,7 @@ export const TodoList = ({ type }: Props) => {
         color="gray"
         onClick={() => handlePrepareToRemove(todo)}
         className="group-hover:opacity-100 opacity-100 sm:opacity-0 mr-2"
+        data-testid={TEST_ID.buttonRemoveTodo}
       >
         <TrashIcon width={16} height={16} />
       </IconButton>

@@ -1,3 +1,5 @@
+import { COLORS } from "./constants";
+
 export enum ActionType {
   ADD_TODO = "ADD_TODO",
   CHANGE_STATUS = "CHANGE_STATUS",
@@ -19,7 +21,7 @@ export type Todo = {
 
 export type Theme = "dark" | "light";
 
-export type Color = "bronze" | "jade" | "indigo";
+export type Color = typeof COLORS extends (infer Key)[] ? Key : never;
 
 export type Tab = "all" | "completed" | "uncompleted";
 

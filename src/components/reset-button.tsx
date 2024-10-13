@@ -1,5 +1,6 @@
 import { TrashIcon } from "@radix-ui/react-icons";
 import { Button } from "@radix-ui/themes";
+import { TEST_ID } from "../constants";
 import { useDispatchContext, useStateContext } from "../context";
 import { ActionType } from "../types";
 
@@ -24,6 +25,7 @@ export const ResetButton = () => {
       disabled={disabled}
       onClick={handleClick}
       className="self-end"
+      data-testid={TEST_ID.buttonRemoveAllTodos}
     >
       <TrashIcon width={12} height={12} />
       Remove {state.tab} todos
