@@ -18,4 +18,4 @@ To run the app locally:
 - `cd app`
 - `npm i`
 - `npm run start`  
-_P.S. Be sure you have installed node.js on you device._
+_P.S. Be sure you have installed node.js on your device._
